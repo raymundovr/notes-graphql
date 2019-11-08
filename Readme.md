@@ -1,3 +1,3 @@
-* Note taking App
+# Note taking App
 
-Excercise using GraphQL on top of Express and NodeJs
+Excercise using GraphQL
