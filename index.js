@@ -1,4 +1,5 @@
 import express from "express";
+import cors from 'cors';
 import mongoose from "mongoose";
 import graphlHTTP from "express-graphql";
 import schema from "./schema";
@@ -10,14 +11,16 @@ mongoose.connect("mongodb://localhost/notes_db", {
 });
 
 const app = express();
-const PORT = 4300;
+const PORT = 4000;
+
+app.use(cors());
 
 app.get("/", (req, res) => {
     res.json({
 	message: "Notes app v1"
     });
 });
-app.use("/graphql", graphlHTTP({
+app.use("/graphql", (req, res, next) => {console.log('Hit'); next(); }, graphlHTTP({
     schema: schema,
     graphiql: true
 }));
